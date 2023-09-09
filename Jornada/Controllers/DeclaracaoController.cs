@@ -40,6 +40,22 @@ namespace Jornada.Controllers
             }
         }
 
+        [HttpGet("Home")]
+        public async Task<IActionResult> GetHomeAsync(int page = 1, int take = 3)
+        {
+            try
+            {
+                var result = await _unitOfWork.DeclaracaoRepository.GetPagedAsync(page, take);
+                var commandResult = new CommandResult(true, "Declaração recuperada com sucesso", result);
+                return Ok(commandResult);
+            }
+            catch (Exception exception)
+            {
+                var commandResult = new CommandResult(true, "Erro 02xDE", exception.Message);
+                return BadRequest(commandResult);
+            }
+        }
+
         [HttpGet("{id}")]
         public async Task<IActionResult> GetByIdAsync(Guid id)
         {

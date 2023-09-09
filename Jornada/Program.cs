@@ -7,22 +7,12 @@ using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
-var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
-builder.Services.AddDbContext<DataContext>(options =>
-{
-    options.UseSqlServer(connectionString);
-});
-
-// Add services to the container.
-
-builder.Services.AddControllers();
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
-builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
-
+ConfigureServices(builder);
 GetServiceCollection(builder);
 
 var app = builder.Build();
+
+app.UseCors(x => x.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
@@ -41,7 +31,6 @@ app.Run();
 
 IServiceCollection GetServiceCollection(WebApplicationBuilder builder)
 {
-    // Adicionando serviços
     var services = builder.Services;
     services.AddScoped<IHandler<CreateDeclaracaoCommand>, CreateDeclaracaoHandler>();
     services.AddScoped<IHandler<UpdateDeclaracaoCommand>, UpdateDeclaracaoHandler>();
@@ -49,4 +38,20 @@ IServiceCollection GetServiceCollection(WebApplicationBuilder builder)
     services.AddScoped<UnitOfWork>();
 
     return services;
+}
+
+void ConfigureServices(WebApplicationBuilder builder)
+{
+    var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
+    builder.Services.AddDbContext<DataContext>(options =>
+    {
+        options.UseSqlServer(connectionString);
+    });
+
+    // Add services to the container.
+
+    builder.Services.AddControllers();
+    // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
+    builder.Services.AddEndpointsApiExplorer();
+    builder.Services.AddSwaggerGen();
 }
