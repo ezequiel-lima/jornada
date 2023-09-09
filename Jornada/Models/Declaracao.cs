@@ -1,6 +1,6 @@
 ﻿namespace Jornada.Models
 {
-    public class Declaracao
+    public class Declaracao : Entity
     {
         protected Declaracao()
         {
@@ -14,7 +14,6 @@
             NomeDoAutor = nomeDoAutor;
         }
 
-        public Guid Id { get; private set; }
         public string Foto { get; private set; }
         public string Depoimento { get; private set; }
         public string NomeDoAutor { get; private set; }

@@ -1,0 +1,30 @@
+﻿using Jornada.Commands;
+using Jornada.Commands.Declaracoes;
+using Jornada.Commands.Interfaces;
+using Jornada.Handlers.Interfaces;
+using Jornada.Infra.Data;
+using Jornada.Models;
+
+namespace Jornada.Handlers.Declaracoes
+{
+    public class CreateDeclaracaoHandler : IHandler<CreateDeclaracaoCommand>
+    {
+        private readonly UnitOfWork _unitOfWork;
+
+        public CreateDeclaracaoHandler(UnitOfWork unitOfWork)
+        {
+            _unitOfWork = unitOfWork;
+        }
+
+        public ICommandResult Handle(CreateDeclaracaoCommand command)
+        {
+            //command.Validate();
+
+            var declaracao = new Declaracao(command.Foto, command.Depoimento, command.NomeDoAutor);
+            _unitOfWork.DeclaracaoRepository.Insert(declaracao);
+            _unitOfWork.Save();
+
+            return new CommandResult(true, "Declaração realizada com sucesso");
+        }
+    }
+}

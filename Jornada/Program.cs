@@ -1,4 +1,10 @@
+using Jornada.Commands.Declaracoes;
+using Jornada.Handlers.Declaracoes;
+using Jornada.Handlers.Interfaces;
 using Jornada.Infra;
+using Jornada.Infra.Data;
+using Jornada.Models;
+using Microsoft.AspNetCore.Cors.Infrastructure;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -16,6 +22,8 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+GetServiceCollection(builder);
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -32,3 +40,13 @@ app.UseAuthorization();
 app.MapControllers();
 
 app.Run();
+
+IServiceCollection GetServiceCollection(WebApplicationBuilder builder)
+{
+    // Adicionando serviços
+    var services = builder.Services;
+    services.AddScoped<IHandler<CreateDeclaracaoCommand>, CreateDeclaracaoHandler>();
+    services.AddScoped<UnitOfWork>();
+
+    return services;
+}
