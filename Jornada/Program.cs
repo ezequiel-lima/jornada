@@ -3,8 +3,6 @@ using Jornada.Handlers.Declaracoes;
 using Jornada.Handlers.Interfaces;
 using Jornada.Infra;
 using Jornada.Infra.Data;
-using Jornada.Models;
-using Microsoft.AspNetCore.Cors.Infrastructure;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -46,6 +44,8 @@ IServiceCollection GetServiceCollection(WebApplicationBuilder builder)
     // Adicionando serviços
     var services = builder.Services;
     services.AddScoped<IHandler<CreateDeclaracaoCommand>, CreateDeclaracaoHandler>();
+    services.AddScoped<IHandler<UpdateDeclaracaoCommand>, UpdateDeclaracaoHandler>();
+    services.AddScoped<IHandler<DeleteDeclaracaoCommand>, DeleteDeclaracaoHandler>();
     services.AddScoped<UnitOfWork>();
 
     return services;

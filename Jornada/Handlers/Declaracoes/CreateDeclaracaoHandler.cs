@@ -16,15 +16,16 @@ namespace Jornada.Handlers.Declaracoes
             _unitOfWork = unitOfWork;
         }
 
-        public ICommandResult Handle(CreateDeclaracaoCommand command)
+        public async Task<ICommandResult> Handle(CreateDeclaracaoCommand command)
         {
+            //QUIEL
             //command.Validate();
 
             var declaracao = new Declaracao(command.Foto, command.Depoimento, command.NomeDoAutor);
             _unitOfWork.DeclaracaoRepository.Insert(declaracao);
             _unitOfWork.Save();
 
-            return new CommandResult(true, "Declaração realizada com sucesso");
+            return new CommandResult(true, "Declaração realizada com sucesso", declaracao);
         }
     }
 }

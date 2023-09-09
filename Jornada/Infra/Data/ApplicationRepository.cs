@@ -42,9 +42,42 @@ namespace Jornada.Infra.Data
             }
         }
 
+        public virtual async Task<IEnumerable<T>> GetAsync(
+            Expression<Func<T, bool>> filter = null,
+            Func<IQueryable<T>, IOrderedQueryable<T>> orderBy = null,
+            string includeProperties = "")
+        {
+            IQueryable<T> query = _dbSet;
+
+            if (filter != null)
+            {
+                query = query.Where(filter);
+            }
+
+            foreach (var includeProperty in includeProperties.Split
+                (new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries))
+            {
+                query = query.Include(includeProperty);
+            }
+
+            if (orderBy != null)
+            {
+                return  await orderBy(query).ToListAsync();
+            }
+            else
+            {
+                return await query.ToListAsync();
+            }
+        }
+
         public virtual T GetByID(object id)
         {
             return _dbSet.Find(id);
+        }
+
+        public virtual async Task<T> GetByIDAsync(object id)
+        {
+            return await _dbSet.FindAsync(id);
         }
 
         public virtual void Insert(T entity)
