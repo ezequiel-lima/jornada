@@ -35,10 +35,13 @@ IServiceCollection GetServiceCollection(WebApplicationBuilder builder)
 {
     var services = builder.Services;
     services.AddScoped(typeof(IApplicationRepository<>), typeof(ApplicationRepository<>));
+    services.AddScoped(typeof(IDestinoRepository), typeof(DestinoRepository));
     services.AddScoped<IHandler<CreateDeclaracaoCommand>, CreateDeclaracaoHandler>();
     services.AddScoped<IHandler<UpdateDeclaracaoCommand>, UpdateDeclaracaoHandler>();
     services.AddScoped<IHandler<DeleteDeclaracaoCommand>, DeleteDeclaracaoHandler>();
     services.AddScoped<IHandler<CreateDestinoCommand>, CreateDestinoHandler>();  
+    services.AddScoped<IHandler<UpdateDestinoCommand>, UpdateDestinoHandler>();  
+    services.AddScoped<IHandler<DeleteDestinoCommand>, DeleteDestinoHandler>();  
     services.AddScoped<IUnitOfWork, UnitOfWork>();
 
     return services;
