@@ -1,5 +1,7 @@
 using Jornada.Commands.Declaracoes;
+using Jornada.Commands.Destinos;
 using Jornada.Handlers.Declaracoes;
+using Jornada.Handlers.Destinos;
 using Jornada.Handlers.Interfaces;
 using Jornada.Infra;
 using Jornada.Infra.Data;
@@ -32,10 +34,12 @@ app.Run();
 IServiceCollection GetServiceCollection(WebApplicationBuilder builder)
 {
     var services = builder.Services;
+    services.AddScoped(typeof(IApplicationRepository<>), typeof(ApplicationRepository<>));
     services.AddScoped<IHandler<CreateDeclaracaoCommand>, CreateDeclaracaoHandler>();
     services.AddScoped<IHandler<UpdateDeclaracaoCommand>, UpdateDeclaracaoHandler>();
     services.AddScoped<IHandler<DeleteDeclaracaoCommand>, DeleteDeclaracaoHandler>();
-    services.AddScoped<UnitOfWork>();
+    services.AddScoped<IHandler<CreateDestinoCommand>, CreateDestinoHandler>();  
+    services.AddScoped<IUnitOfWork, UnitOfWork>();
 
     return services;
 }

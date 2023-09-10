@@ -9,9 +9,9 @@ namespace Jornada.Handlers.Declaracoes
 {
     public class CreateDeclaracaoHandler : IHandler<CreateDeclaracaoCommand>
     {
-        private readonly UnitOfWork _unitOfWork;
+        private readonly IUnitOfWork _unitOfWork;
 
-        public CreateDeclaracaoHandler(UnitOfWork unitOfWork)
+        public CreateDeclaracaoHandler(IUnitOfWork unitOfWork)
         {
             _unitOfWork = unitOfWork;
         }

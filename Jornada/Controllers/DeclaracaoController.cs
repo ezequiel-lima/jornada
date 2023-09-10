@@ -14,9 +14,9 @@ namespace Jornada.Controllers
         private readonly IHandler<CreateDeclaracaoCommand> _createDeclaracaoHandler;
         private readonly IHandler<UpdateDeclaracaoCommand> _updateDeclaracaoHandler;
         private readonly IHandler<DeleteDeclaracaoCommand> _deleteDeclaracaoHandler;
-        private readonly UnitOfWork _unitOfWork;
+        private readonly IUnitOfWork _unitOfWork;
 
-        public DeclaracaoController(IHandler<CreateDeclaracaoCommand> createDeclaracaoHandler, IHandler<UpdateDeclaracaoCommand> updateDeclaracaoHandler, IHandler<DeleteDeclaracaoCommand> deleteDeclaracaoHandler, UnitOfWork unitOfWork)
+        public DeclaracaoController(IHandler<CreateDeclaracaoCommand> createDeclaracaoHandler, IHandler<UpdateDeclaracaoCommand> updateDeclaracaoHandler, IHandler<DeleteDeclaracaoCommand> deleteDeclaracaoHandler, IUnitOfWork unitOfWork)
         {
             _createDeclaracaoHandler = createDeclaracaoHandler;
             _updateDeclaracaoHandler = updateDeclaracaoHandler;

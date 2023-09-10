@@ -8,9 +8,9 @@ namespace Jornada.Handlers.Declaracoes
 {
     public class DeleteDeclaracaoHandler : IHandler<DeleteDeclaracaoCommand>
     {
-        private readonly UnitOfWork _unitOfWork;
+        private readonly IUnitOfWork _unitOfWork;
 
-        public DeleteDeclaracaoHandler(UnitOfWork unitOfWork)
+        public DeleteDeclaracaoHandler(IUnitOfWork unitOfWork)
         {
             _unitOfWork = unitOfWork;
         }

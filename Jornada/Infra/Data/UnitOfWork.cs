@@ -2,17 +2,18 @@
 
 namespace Jornada.Infra.Data
 {
-    public class UnitOfWork : IDisposable
+    public class UnitOfWork : IDisposable, IUnitOfWork
     {
         private DataContext _context;
-        private ApplicationRepository<Declaracao> _declaracaoRepository;
+        private IApplicationRepository<Declaracao> _declaracaoRepository;
+        private IApplicationRepository<Destino> _destinoRepository;
 
         public UnitOfWork(DataContext context)
         {
             _context = context;
         }
 
-        public ApplicationRepository<Declaracao> DeclaracaoRepository
+        public IApplicationRepository<Declaracao> DeclaracaoRepository
         {
             get
             {
@@ -23,6 +24,19 @@ namespace Jornada.Infra.Data
                 return _declaracaoRepository;
             }
         }
+
+        public IApplicationRepository<Destino> DestinoRepository
+        {
+            get
+            {
+                if (this._destinoRepository == null)
+                {
+                    this._destinoRepository = new ApplicationRepository<Destino>(_context);
+                }
+                return _destinoRepository;
+            }
+        }
+
         public void Save()
         {
             _context.SaveChanges();

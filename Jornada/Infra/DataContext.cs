@@ -11,10 +11,12 @@ namespace Jornada.Infra
         }
 
         public DbSet<Declaracao> Declaracoes { get; set; }
+        public DbSet<Destino> Destinos { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.ApplyConfiguration(new DeclaracaoMap());
+            modelBuilder.ApplyConfiguration(new DestinoMap());
         }
     }
 }
