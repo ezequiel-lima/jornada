@@ -5,6 +5,7 @@ using Jornada.Commands.Destinos;
 using Jornada.Handlers.Interfaces;
 using Jornada.Commands.Declaracoes;
 using Jornada.Handlers.Declaracoes;
+using Jornada.Infra.Data.Repositories;
 
 namespace Jornada.Controllers
 {
@@ -65,6 +66,10 @@ namespace Jornada.Controllers
             try
             {
                 var result = await _destinoRepository.GetByNameAsync(nome);
+
+                if (result is null)
+                    return Ok(new CommandResult(false, "Nenhum destino foi encontrado"));
+
                 var commandResult = new CommandResult(true, "Destino recuperado com sucesso", result);
                 return Ok(commandResult);
             }

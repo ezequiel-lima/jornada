@@ -5,6 +5,7 @@ using Jornada.Handlers.Destinos;
 using Jornada.Handlers.Interfaces;
 using Jornada.Infra;
 using Jornada.Infra.Data;
+using Jornada.Infra.Data.Repositories;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
