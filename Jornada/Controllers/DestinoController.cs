@@ -3,8 +3,6 @@ using Microsoft.AspNetCore.Mvc;
 using Jornada.Infra.Data;
 using Jornada.Commands.Destinos;
 using Jornada.Handlers.Interfaces;
-using Jornada.Commands.Declaracoes;
-using Jornada.Handlers.Declaracoes;
 using Jornada.Infra.Data.Repositories;
 
 namespace Jornada.Controllers
