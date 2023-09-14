@@ -3,7 +3,6 @@ using Jornada.Commands.Declaracoes;
 using Jornada.Handlers.Interfaces;
 using Jornada.Infra.Data;
 using Microsoft.AspNetCore.Mvc;
-using System;
 
 namespace Jornada.Controllers
 {
@@ -35,7 +34,7 @@ namespace Jornada.Controllers
             }
             catch (Exception exception)
             {
-                var commandResult = new CommandResult(true, "Erro 01xDE", exception.Message);
+                var commandResult = new CommandResult(false, "Erro 01xDE", exception.Message);
                 return BadRequest(commandResult);
             }
         }
@@ -51,7 +50,7 @@ namespace Jornada.Controllers
             }
             catch (Exception exception)
             {
-                var commandResult = new CommandResult(true, "Erro 02xDE", exception.Message);
+                var commandResult = new CommandResult(false, "Erro 02xDE", exception.Message);
                 return BadRequest(commandResult);
             }
         }
@@ -67,7 +66,7 @@ namespace Jornada.Controllers
             }
             catch (Exception exception)
             {
-                var commandResult = new CommandResult(true, "Erro 02xDE", exception.Message);
+                var commandResult = new CommandResult(false, "Erro 03xDE", exception.Message);
                 return BadRequest(commandResult);
             }
         }
@@ -82,7 +81,7 @@ namespace Jornada.Controllers
             }
             catch (Exception exception)
             {
-                var commandResult = new CommandResult(true, "Erro 03xDE", exception.Message);
+                var commandResult = new CommandResult(false, "Erro 04xDE", exception.Message);
                 return BadRequest(commandResult);
             }
         }
@@ -98,7 +97,7 @@ namespace Jornada.Controllers
             }
             catch (Exception exception)
             {
-                var commandResult = new CommandResult(true, "Erro 04xDE", exception.Message);
+                var commandResult = new CommandResult(false, "Erro 05xDE", exception.Message);
                 return BadRequest(commandResult);
             }
         }
@@ -114,7 +113,7 @@ namespace Jornada.Controllers
             }
             catch (Exception exception)
             {
-                var commandResult = new CommandResult(true, "Erro 04xDE", exception.Message);
+                var commandResult = new CommandResult(false, "Erro 06xDE", exception.Message);
                 return BadRequest(commandResult);
             }
         }

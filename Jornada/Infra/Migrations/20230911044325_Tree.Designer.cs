@@ -4,6 +4,7 @@ using Jornada.Infra;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Jornada.Infra.Migrations
 {
     [DbContext(typeof(DataContext))]
-    partial class DataContextModelSnapshot : ModelSnapshot
+    [Migration("20230911044325_Tree")]
+    partial class Tree
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -102,7 +105,6 @@ namespace Jornada.Infra.Migrations
                     b.HasOne("Jornada.Models.Destino", null)
                         .WithMany("Fotos")
                         .HasForeignKey("DestinoId")
-                        .OnDelete(DeleteBehavior.Cascade)
                         .HasConstraintName("FK_Destino_Foto");
                 });
 

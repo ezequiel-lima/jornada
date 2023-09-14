@@ -25,7 +25,7 @@ app.Run();
 IServiceCollection GetServiceCollection(WebApplicationBuilder builder)
 {
     var services = builder.Services;
-    Register.RegisterApplication(services);
+    DependencyConfigurator.Register(services);
     return services;
 }
 

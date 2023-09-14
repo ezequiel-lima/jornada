@@ -6,6 +6,7 @@ namespace Jornada.Infra.Data
     {
         IApplicationRepository<Declaracao> DeclaracaoRepository { get; }
         IApplicationRepository<Destino> DestinoRepository { get; }
+        IApplicationRepository<Foto> FotoRepository { get; }
 
         void Dispose();
         void Save();

@@ -8,9 +8,9 @@ using Jornada.Infra.Data;
 
 namespace Jornada.Infra
 {
-    public static class Register
+    public static class DependencyConfigurator
     {
-        public static void RegisterApplication(this IServiceCollection services)
+        public static void Register(this IServiceCollection services)
         {
             services.AddScoped(typeof(IApplicationRepository<>), typeof(ApplicationRepository<>));
             services.AddScoped(typeof(IDestinoRepository), typeof(DestinoRepository));

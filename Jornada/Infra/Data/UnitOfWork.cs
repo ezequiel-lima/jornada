@@ -7,6 +7,7 @@ namespace Jornada.Infra.Data
         private DataContext _context;
         private IApplicationRepository<Declaracao> _declaracaoRepository;
         private IApplicationRepository<Destino> _destinoRepository;
+        private IApplicationRepository<Foto> _fotoRepository;
 
         public UnitOfWork(DataContext context)
         {
@@ -34,6 +35,18 @@ namespace Jornada.Infra.Data
                     this._destinoRepository = new ApplicationRepository<Destino>(_context);
                 }
                 return _destinoRepository;
+            }
+        }
+
+        public IApplicationRepository<Foto> FotoRepository
+        {
+            get
+            {
+                if (this._fotoRepository == null)
+                {
+                    this._fotoRepository = new ApplicationRepository<Foto>(_context);
+                }
+                return _fotoRepository;
             }
         }
 

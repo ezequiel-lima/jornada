@@ -21,7 +21,12 @@ namespace Jornada.Handlers.Destinos
             //command.Validate();
 
             var destino = await _unitOfWork.DestinoRepository.GetByIDAsync(command.Id);
-            destino.Alterar(command.Foto, command.Nome, command.Preco);
+            destino.Alterar(command.Fotos, command.Nome, command.Meta, command.TextoDescritivo, command.Preco);
+
+            foreach (var foto in command.Fotos)
+            {
+                _unitOfWork.FotoRepository.Insert(foto);
+            }
 
             _unitOfWork.DestinoRepository.Update(destino);
             _unitOfWork.Save();

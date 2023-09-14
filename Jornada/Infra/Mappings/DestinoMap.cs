@@ -11,10 +11,16 @@ namespace Jornada.Infra.Mappings
             builder.ToTable("Destino");
             builder.HasKey(x => x.Id);
 
-            builder.Property(x => x.Foto);
+            // 1 x N Relacionamento
+            builder.HasMany(x => x.Fotos)
+                .WithOne()
+                .HasConstraintName("FK_Destino_Foto")
+                .OnDelete(DeleteBehavior.Cascade); // Deletar em cascata
 
-            builder.Property(x => x.Nome)
-                .HasMaxLength(200);
+            builder.Property(x => x.Meta)
+                .HasMaxLength(160);
+            
+            builder.Property(x => x.TextoDescritivo);
 
             builder.Property(x => x.Preco)
                 .HasPrecision(18, 2) 

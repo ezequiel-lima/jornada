@@ -21,7 +21,7 @@ namespace Jornada.Handlers.Destinos
             //QUIEL     
             //command.Validate();
 
-            var destino = new Destino(command.Foto, command.Nome, command.Preco);
+            var destino = new Destino(command.Nome, command.Meta, command.TextoDescritivo, command.Preco);
             _unitOfWork.DestinoRepository.Insert(destino);
             _unitOfWork.Save();
 
