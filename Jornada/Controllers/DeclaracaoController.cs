@@ -1,7 +1,6 @@
 ﻿using Jornada.Commands;
 using Jornada.Commands.Declaracoes;
 using Jornada.Handlers.Interfaces;
-using Jornada.Infra.Data;
 using Jornada.Infra.Data.Repositories;
 using Microsoft.AspNetCore.Mvc;
 

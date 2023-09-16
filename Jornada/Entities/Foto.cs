@@ -7,11 +7,11 @@
             Url = url;
         }
 
-        public Foto()
+        protected Foto()
         {
             
         }
 
-        public string Url { get; set; }
+        public string Url { get; private set; }
     }
 }

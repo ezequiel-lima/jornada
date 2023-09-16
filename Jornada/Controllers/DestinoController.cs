@@ -64,7 +64,7 @@ namespace Jornada.Controllers
                 var result = await _destinoRepository.GetByNameAsync(nome);
 
                 if (result is null)
-                    return Ok(new CommandResult(false, "Nenhum destino foi encontrado"));
+                    return NotFound(new CommandResult(false, "Nenhum destino foi encontrado"));
 
                 var commandResult = new CommandResult(true, "Destino recuperado com sucesso", result);
                 return Ok(commandResult);
