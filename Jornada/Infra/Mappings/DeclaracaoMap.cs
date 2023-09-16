@@ -11,7 +11,10 @@ namespace Jornada.Infra.Mappings
             builder.ToTable("Declaracao");
             builder.HasKey(x => x.Id);
 
-            builder.Property(x => x.Foto);
+            builder.HasMany(x => x.Fotos)
+                .WithOne()
+                .HasConstraintName("FK_Declaracao_Foto")
+                .OnDelete(DeleteBehavior.Cascade);
 
             builder.Property(x => x.Depoimento)
                 .HasMaxLength(200);

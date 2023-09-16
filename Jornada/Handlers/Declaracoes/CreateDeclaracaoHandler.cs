@@ -21,7 +21,13 @@ namespace Jornada.Handlers.Declaracoes
             //QUIEL
             //command.Validate();
 
-            var declaracao = new Declaracao(command.Foto, command.Depoimento, command.NomeDoAutor);
+            var declaracao = new Declaracao(command.Fotos, command.Depoimento, command.NomeDoAutor);
+
+            foreach (var foto in declaracao.Fotos)
+            {
+                _unitOfWork.FotoRepository.Insert(foto);
+            }
+
             _unitOfWork.DeclaracaoRepository.Insert(declaracao);
             _unitOfWork.Save();
 

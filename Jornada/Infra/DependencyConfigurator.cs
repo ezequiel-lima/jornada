@@ -14,6 +14,7 @@ namespace Jornada.Infra
         {
             services.AddScoped(typeof(IApplicationRepository<>), typeof(ApplicationRepository<>));
             services.AddScoped(typeof(IDestinoRepository), typeof(DestinoRepository));
+            services.AddScoped(typeof(IDeclaracaoRepository), typeof(DeclaracaoRepository));
             services.AddScoped<IHandler<CreateDeclaracaoCommand>, CreateDeclaracaoHandler>();
             services.AddScoped<IHandler<UpdateDeclaracaoCommand>, UpdateDeclaracaoHandler>();
             services.AddScoped<IHandler<DeleteDeclaracaoCommand>, DeleteDeclaracaoHandler>();

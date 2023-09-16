@@ -41,3 +41,5 @@ void ConfigureServices(WebApplicationBuilder builder)
     builder.Services.AddEndpointsApiExplorer();
     builder.Services.AddSwaggerGen();
 }
+
+// QUIEL MAPEAMENTO DE DECLARACAO COM FOTO 1x1

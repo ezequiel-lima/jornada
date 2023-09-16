@@ -4,23 +4,31 @@
     {
         protected Declaracao()
         {
-            
+
         }
 
-        public Declaracao(string foto, string depoimento, string nomeDoAutor)
+        public Declaracao(List<Foto> fotos, string depoimento, string nomeDoAutor)
         {
-            Alterar(foto, depoimento, nomeDoAutor);
+            Fotos.Add(fotos[0]);
+            Depoimento = depoimento;
+            NomeDoAutor = nomeDoAutor;
         }
 
-        public string Foto { get; private set; }
+        public List<Foto> Fotos { get; private set; } = new List<Foto>();
         public string Depoimento { get; private set; }
         public string NomeDoAutor { get; private set; }
 
-        public void Alterar(string foto, string depoimento, string nomeDoAutor)
+        public void Alterar(List<Foto> fotos, string depoimento, string nomeDoAutor)
         {
-            Foto = foto;
+            AdicionarFoto(fotos);
             Depoimento = depoimento;
             NomeDoAutor = nomeDoAutor;
+        }
+
+        public void AdicionarFoto(List<Foto> fotos)
+        {
+            Fotos.Clear();
+            Fotos.Add(fotos[0]);
         }
     }
 }

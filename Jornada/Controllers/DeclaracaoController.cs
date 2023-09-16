@@ -2,6 +2,7 @@
 using Jornada.Commands.Declaracoes;
 using Jornada.Handlers.Interfaces;
 using Jornada.Infra.Data;
+using Jornada.Infra.Data.Repositories;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Jornada.Controllers
@@ -13,14 +14,14 @@ namespace Jornada.Controllers
         private readonly IHandler<CreateDeclaracaoCommand> _createDeclaracaoHandler;
         private readonly IHandler<UpdateDeclaracaoCommand> _updateDeclaracaoHandler;
         private readonly IHandler<DeleteDeclaracaoCommand> _deleteDeclaracaoHandler;
-        private readonly IUnitOfWork _unitOfWork;
+        private readonly IDeclaracaoRepository _declaracaoRepository;
 
-        public DeclaracaoController(IHandler<CreateDeclaracaoCommand> createDeclaracaoHandler, IHandler<UpdateDeclaracaoCommand> updateDeclaracaoHandler, IHandler<DeleteDeclaracaoCommand> deleteDeclaracaoHandler, IUnitOfWork unitOfWork)
+        public DeclaracaoController(IHandler<CreateDeclaracaoCommand> createDeclaracaoHandler, IHandler<UpdateDeclaracaoCommand> updateDeclaracaoHandler, IHandler<DeleteDeclaracaoCommand> deleteDeclaracaoHandler, IDeclaracaoRepository declaracaoRepository)
         {
             _createDeclaracaoHandler = createDeclaracaoHandler;
             _updateDeclaracaoHandler = updateDeclaracaoHandler;
             _deleteDeclaracaoHandler = deleteDeclaracaoHandler;
-            _unitOfWork = unitOfWork;
+            _declaracaoRepository = declaracaoRepository;
         }
 
         [HttpGet]
@@ -28,7 +29,7 @@ namespace Jornada.Controllers
         {
             try
             {
-                var result = await _unitOfWork.DeclaracaoRepository.GetAsync();
+                var result = await _declaracaoRepository.GetAsync();
                 var commandResult = new CommandResult(true, "Declarações recuperadas com sucesso", result);
                 return Ok(commandResult);
             }
@@ -44,7 +45,7 @@ namespace Jornada.Controllers
         {
             try
             {
-                var result = await _unitOfWork.DeclaracaoRepository.GetPagedAsync(page, take);
+                var result = await _declaracaoRepository.GetPagedAsync(page, take);
                 var commandResult = new CommandResult(true, "Declaração recuperada com sucesso", result);
                 return Ok(commandResult);
             }
@@ -60,7 +61,7 @@ namespace Jornada.Controllers
         {
             try
             {
-                var result = await _unitOfWork.DeclaracaoRepository.GetByIDAsync(id);
+                var result = await _declaracaoRepository.GetByIDAsync(id);
                 var commandResult = new CommandResult(true, "Declaração recuperada com sucesso", result);
                 return Ok(commandResult);
             }

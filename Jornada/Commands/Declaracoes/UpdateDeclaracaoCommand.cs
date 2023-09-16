@@ -1,4 +1,5 @@
 ﻿using Jornada.Commands.Interfaces;
+using Jornada.Models;
 using System.Text.Json.Serialization;
 
 namespace Jornada.Commands.Declaracoes
@@ -7,7 +8,7 @@ namespace Jornada.Commands.Declaracoes
     {
         [JsonIgnore]
         public Guid Id { get; set; }
-        public string Foto { get; set; }
+        public List<Foto> Fotos { get; set; }
         public string Depoimento { get; set; }
         public string NomeDoAutor { get; set; }
 
